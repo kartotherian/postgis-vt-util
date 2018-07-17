@@ -9,7 +9,7 @@ begin
     if scaledenominator > 600000000 then
         return null;
     end if;
-    return round(log(2,559082264.028/scaledenominator));
+    return pg_catalog.round(pg_catalog.log(2,559082264.028/scaledenominator));
 end;
 $function$;
 
@@ -47,7 +47,7 @@ begin
         -- if length is 0 geom is (probably) a point; keep it
         return true;
     else
-        return length(label) BETWEEN 1 AND st_length(geometry)/(2^(20-zoom));
+        return pg_catalog.length(label) BETWEEN 1 AND st_length(geometry)/(2^(20-zoom));
     end if;
 end;
 $function$;
@@ -139,7 +139,7 @@ $function$
 begin
     return st_buffer(
         geom,
-        distance / cos(radians(st_y(st_transform(st_centroid(geom),4326))))
+        distance / pg_catalog.cos(pg_catalog.radians(st_y(st_transform(st_centroid(geom),4326))))
     );
 end;
 $function$;
@@ -161,7 +161,7 @@ begin
     return st_dwithin(
         geom1,
         geom2,
-        distance / cos(radians(st_y(st_transform(st_centroid(geom1),4326))))
+        distance / pg_catalog.cos(pg_catalog.radians(st_y(st_transform(st_centroid(geom1),4326))))
     );
 end;
 $function$;
@@ -176,7 +176,7 @@ create or replace function public.merc_length(geom geometry)
     language plpgsql immutable as
 $function$
 begin
-    return st_length(geom) * cos(radians(st_y(st_transform(st_centroid(geom),4326))));
+    return st_length(geom) * pg_catalog.cos(pg_catalog.radians(st_y(st_transform(st_centroid(geom),4326))));
 end;
 $function$;
 

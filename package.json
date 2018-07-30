@@ -1,6 +1,6 @@
 {
-    "name": "postgis-vt-util",
-    "version": "0.3.0",
+    "name": "@kartotherian/postgis-vt-util",
+    "version": "0.3.1",
     "description": "PostGIS helper functions for making vector tiles",
     "main": "./package.json",
     "scripts": {
